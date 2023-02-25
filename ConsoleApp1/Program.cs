@@ -42,18 +42,21 @@ namespace BonusWork1
                     throw new ArgumentException("Action: Неверный тип оперции");
             }
         }
-        /// <summary>
-        /// Печатает на экран матрицу
-        /// </summary>
-        /// <typeparam name="T">Исходный тип</typeparam>
-        /// <param name="matr">Исходная матрица</param>
-        static void PrintMatr<T>(T[,] matr)
+        public static class Extensions
         {
-            for (int i = 0; i < matr.GetLength(0); i++)
+            /// <summary>
+            /// Печатает на экран матрицу
+            /// </summary>
+            /// <typeparam name="T">Исходный тип</typeparam>
+            /// <param name="matr">Исходная матрица</param>
+            public static void PrintMatr<T>(T[,] matr)
             {
-                for (int j = 0; j < matr.GetLength(1); j++)
-                    Console.Write($"{matr[i, j],-3}");
-                Console.WriteLine();
+                for (int i = 0; i < matr.GetLength(0); i++)
+                {
+                    for (int j = 0; j < matr.GetLength(1); j++)
+                        Console.Write($"{matr[i, j],-3}");
+                    Console.WriteLine();
+                }
             }
         }
         /// <summary>
@@ -92,9 +95,10 @@ namespace BonusWork1
             // Задание 2
             Console.WriteLine(StringIsHappy(" 7"));
             // Задание 3
-            PrintMatr(new int[,] { { 10, 2, 30 }, { 4, 50, 6 }, { 70, 8, 90 } });
+            Extensions.PrintMatr(new int[,] { { 10, 2, 30 }, { 4, 50, 6 }, { 70, 8, 90 } });
             // Задание 4
-            PrintMatr(SelectMatr(new bool[,] { { true, false }, { false, true } }, IntToBool));
+            Extensions.PrintMatr(SelectMatr(new bool[,] { { true, false }, { false, true } }, IntToBool));
+
         }
     }
 }
