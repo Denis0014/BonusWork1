@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Reflection.Metadata.Ecma335;
 
 namespace BonusWork1
 {
@@ -25,7 +24,7 @@ namespace BonusWork1
         static void Action(ActionType act, int a, double b, long c)
         {
             double res = 0;
-            switch (act) 
+            switch (act)
             {
                 case ActionType.Sum:
                     res = a + (int)b + (int)c;
@@ -46,16 +45,32 @@ namespace BonusWork1
         /// <summary>
         /// Печатает на экран матрицу
         /// </summary>
-        /// <typeparam name="T"></typeparam>
+        /// <typeparam name="T">Исходный тип</typeparam>
         /// <param name="matr">Исходная матрица</param>
-        static void PrintMatr<T>(T[,] matr) 
+        static void PrintMatr<T>(T[,] matr)
         {
             for (int i = 0; i < matr.GetLength(0); i++)
             {
                 for (int j = 0; j < matr.GetLength(1); j++)
-                    Console.Write($"{matr[i, j], -3}");
+                    Console.Write($"{matr[i, j],-3}");
                 Console.WriteLine();
             }
+        }
+        /// <summary>
+        /// Проецируюет значения матрица типа T в возвращаюмую матрицу типа S
+        /// </summary>
+        /// <typeparam name="T">Исходный тип</typeparam>
+        /// <typeparam name="S">Получаемый тип</typeparam>
+        /// <param name="matr">Исходная матрица</param>
+        /// <param name="f">Функция преобразования элемента из типа T в тип S</param>
+        /// <returns>Матрица типа S</returns>
+        static S[,] SelectMatr<T, S>(T[,] matr, Func<T, S> f)
+        {
+            S[,] res = new S[matr.GetLength(0), matr.GetLength(1)];
+            for (int i = 0; i < matr.GetLength(0); i++)
+                for (int j = 0; j < matr.GetLength(1); j++)
+                    res[i, j] = f(matr[i, j]);
+            return res;
         }
 
         /// <summary>
@@ -66,9 +81,10 @@ namespace BonusWork1
         /// составляющих эту строку, получается число, оканчивающееся на цифру 7
         /// </remarks>
         /// <param name="s">Исходжная строка</param>
-        /// <returns></returns>
+        /// <returns>Является ли строка счастливой?</returns>
         static bool StringIsHappy(string s) => s.ToCharArray().Sum(x => x) % 10 == 7;
 
+        static int IntToBool(bool b) => b? 1 : 0;
         static void Main(string[] args)
         {
             // Задание 1
@@ -77,6 +93,8 @@ namespace BonusWork1
             Console.WriteLine(StringIsHappy(" 7"));
             // Задание 3
             PrintMatr(new int[,] { { 10, 2, 30 }, { 4, 50, 6 }, { 70, 8, 90 } });
+            // Задание 4
+            PrintMatr(SelectMatr(new bool[,] { { true, false }, { false, true } }, IntToBool));
         }
     }
 }
