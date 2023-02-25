@@ -17,7 +17,7 @@ namespace BonusWork1
         /// <summary>
         /// Cовершает одно из действий (ActionType) и выводит результат на экран, в зависимости от значения перечислимого типа
         /// </summary>
-        /// <param name="act">Типы операций</param>
+        /// <param name="act">Тип операции</param>
         /// <param name="a"></param>
         /// <param name="b"></param>
         /// <param name="c"></param>
@@ -43,8 +43,12 @@ namespace BonusWork1
                     throw new ArgumentException("Action: Неверный тип оперции");
             }
         }
-
-        static void PrintMatr(int[,] matr) 
+        /// <summary>
+        /// Печатает на экран матрицу
+        /// </summary>
+        /// <typeparam name="T"></typeparam>
+        /// <param name="matr">Исходная матрица</param>
+        static void PrintMatr<T>(T[,] matr) 
         {
             for (int i = 0; i < matr.GetLength(0); i++)
             {
@@ -61,7 +65,7 @@ namespace BonusWork1
         /// Будем называть строку счастливой, если, просуммировав коды символов,<br></br>
         /// составляющих эту строку, получается число, оканчивающееся на цифру 7
         /// </remarks>
-        /// <param name="s"></param>
+        /// <param name="s">Исходжная строка</param>
         /// <returns></returns>
         static bool StringIsHappy(string s) => s.ToCharArray().Sum(x => x) % 10 == 7;
 
