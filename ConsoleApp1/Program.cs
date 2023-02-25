@@ -43,6 +43,17 @@ namespace BonusWork1
                     throw new ArgumentException("Action: Неверный тип оперции");
             }
         }
+
+        static void PrintMatr(int[,] matr) 
+        {
+            for (int i = 0; i < matr.GetLength(0); i++)
+            {
+                for (int j = 0; j < matr.GetLength(1); j++)
+                    Console.Write($"{matr[i, j], -3}");
+                Console.WriteLine();
+            }
+        }
+
         /// <summary>
         /// Возвращает, является ли строка счастливой
         /// </summary>
@@ -60,6 +71,8 @@ namespace BonusWork1
             Action(ActionType.Sum, 4, 12.0, 100L);
             // Задание 2
             Console.WriteLine(StringIsHappy(" 7"));
+            // Задание 3
+            PrintMatr(new int[,] { { 10, 2, 30 }, { 4, 50, 6 }, { 70, 8, 90 } });
         }
     }
 }
