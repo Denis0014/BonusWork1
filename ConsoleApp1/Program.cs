@@ -43,11 +43,15 @@ namespace BonusWork1
                     throw new ArgumentException("Action: Неверный тип оперции");
             }
         }
-        
+
+        static bool StringIsHappy(string s) => s.ToCharArray().Sum(x => x) % 10 == 7;
+
         static void Main(string[] args)
         {
             // Задание 1
             Action(ActionType.Sum, 4, 12.0, 100L);
+            // Задание 2
+            Console.WriteLine(StringIsHappy(" 7"));
         }
     }
 }
