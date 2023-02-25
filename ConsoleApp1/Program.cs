@@ -58,6 +58,16 @@ namespace BonusWork1
                     Console.WriteLine();
                 }
             }
+            /// <summary>
+            /// Печатает на экран массив
+            /// </summary>
+            /// <typeparam name="T">Исходный тип</typeparam>
+            /// <param name="matr">Исходный массив</param>
+            public static void PrintArr<T>(T[] matr)
+            {
+                for (int i = 0; i < matr.GetLength(0); i++)
+                    Console.Write($"{matr[i]}");
+            }
         }
         /// <summary>
         /// Проецируюет значения матрица типа T в возвращаюмую матрицу типа S
@@ -98,7 +108,6 @@ namespace BonusWork1
             Extensions.PrintMatr(new int[,] { { 10, 2, 30 }, { 4, 50, 6 }, { 70, 8, 90 } });
             // Задание 4
             Extensions.PrintMatr(SelectMatr(new bool[,] { { true, false }, { false, true } }, IntToBool));
-
         }
     }
 }
